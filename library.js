@@ -1,5 +1,7 @@
+//Book Array (all stored books)
 const myLibrary = [];
 
+//Book constructor
 function Book(title, author, pages, read) {
     if(!new.target) {
         throw Error("You must use the 'new' operator to call this constructor")
@@ -16,18 +18,17 @@ function Book(title, author, pages, read) {
     };
 }
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'not read yet');
-
+// Function to add Books
 function addBookToLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
     myLibrary.push(book)
 }
 
+//Dummy Content
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', 'not read yet');
-
 addBookToLibrary('Gedage', 'bagnado', '295', 'not read yet');
 
-
+//Library Loop
 myLibrary.forEach(book => {    
     const content = document.querySelector('#content');
 
@@ -42,15 +43,15 @@ myLibrary.forEach(book => {
     title.textContent = book.title;
 
     const author = document.createElement("p");
-    author.classList.add("author");
+    author.classList.add("textContent");
     author.textContent = `Author: ${book.author}`;
 
     const pages = document.createElement("p");
-    pages.classList.add("pages");
+    pages.classList.add("textContent");
     pages.textContent = `Pages: ${book.pages}`;
 
     const read = document.createElement("p");
-    read.classList.add("read");
+    read.classList.add("textContent");
     read.textContent = `Read: ${book.read}`;
 
     const buttonContainer = document.createElement("div");
@@ -80,5 +81,4 @@ myLibrary.forEach(book => {
     card.appendChild(cardContent);
 });
 
-
-
+// Add Button
