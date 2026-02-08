@@ -18,10 +18,17 @@
         </div>
         <div id="addSection">
             <button type="button" id="addButton">+Add Book</button>
-            <dialog>
+            <dialog data-add-dialog>
                 <h2>Add a new book</h2>
-                <form>
+                <form data-dialog-form>
+                    <input type="text" class="formTitle" placeholder="Book title" title="Title">
                     <input type="text" class="formAuthor" placeholder="Author" title="Author">
+                    <input type="number" class="formPages" placeholder="Pages" title="Pages">
+                    <div class="checkboxContainer">
+                        <input type="checkbox" name="read">
+                        <p>Already read?</p>
+                    </div>
+                    <button type="submit" data-submit-button>Add Book</button>
                 </form>
             </dialog>
         </div>
