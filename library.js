@@ -38,36 +38,43 @@ function renderBook(book) {
     
     const cardContent = document.createElement("div");
     cardContent.classList.add("cardContent")
+    cardContent.dataset.id = book.id;
 
     const title = document.createElement("p");
     title.classList.add("title");
     title.textContent = book.title;
+    title.dataset.id = book.id;
 
     const author = document.createElement("p");
     author.classList.add("textContent");
     author.textContent = `Author: ${book.author}`;
+    author.dataset.id = book.id;
 
     const pages = document.createElement("p");
     pages.classList.add("textContent");
     pages.textContent = `Pages: ${book.pages}`;
+    pages.dataset.id = book.id;
 
     const read = document.createElement("p");
     read.classList.add("textContent");
     read.textContent = `Read: ${book.read}`;
+    read.dataset.id = book.id;
 
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("buttonContainer");
+    buttonContainer.dataset.id = book.id;
 
     const readButton = document.createElement("button");
     readButton.setAttribute("type", "button");
     readButton.classList.add("readButton");
     readButton.textContent = 'Read';
+    readButton.dataset.id = book.id;
 
     const deleteButton = document.createElement("button");
     deleteButton.setAttribute("type", "button");
     deleteButton.classList.add("deleteButton");
     deleteButton.textContent = 'Delete';
-
+    deleteButton.dataset.id = book.id;
     
     cardContent.appendChild(title);
     cardContent.appendChild(author);
@@ -84,6 +91,24 @@ function renderBook(book) {
 
 //Library Loop
 myLibrary.forEach(renderBook);
+
+//Delete Button
+const deleteButton = document.querySelector(".deleteButton");
+content.addEventListener("click", (e) => {
+    if(!e.target.classList.contains("deleteButton")) return;
+    const card = e.target.closest(".card");
+    const id = card.dataset.id;
+    
+    //DOM entfernen
+    card.remove();
+
+    //Remove in Array
+    const index = myLibrary.findIndex(book => book.id === id);
+    if(index !== -1) {
+        myLibrary.splice(index, 1);
+    }
+})
+
 
 // Add Button
 const addButton = document.querySelector("#addButton");
