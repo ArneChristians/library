@@ -21,19 +21,20 @@ function Book(title, author, pages, read) {
 // Function to add Books
 function addBookToLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
-    myLibrary.push(book)
+    myLibrary.push(book);
+    return book;
 }
 
 //Dummy Content
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', 'not read yet');
 addBookToLibrary('Gedage', 'bagnado', '295', 'not read yet');
 
-//Library Loop
-myLibrary.forEach(book => {    
-    const content = document.querySelector('#content');
+const content = document.querySelector('#content');
 
+function renderBook(book) {
     const card = document.createElement("div");
     card.classList.add("card");
+    card.dataset.id = book.id;
     
     const cardContent = document.createElement("div");
     cardContent.classList.add("cardContent")
@@ -79,12 +80,36 @@ myLibrary.forEach(book => {
     
     content.appendChild(card);
     card.appendChild(cardContent);
-});
+}
+
+//Library Loop
+myLibrary.forEach(renderBook);
 
 // Add Button
 const addButton = document.querySelector("#addButton");
-const addDialog = document.querySelector("[data-add-dialog]")
+const addDialog = document.querySelector("[data-add-dialog]");
 
 addButton.addEventListener("click", () => {
-    addDialog.showModal()
+    addDialog.showModal();
+})
+
+// Submit Button
+const submitButton = document.querySelector("[data-submit-button]");
+submitButton.addEventListener("click", () => {
+    addDialog.close();
+})
+
+const form = document.querySelector("[data-dialog-form]");
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const title = data.get("title");
+    const author = data.get("author");
+    const pages = data.get("pages")
+    const readValue = data.get("read") === "on" ? "Read" : "Not read yet";
+
+    const book = addBookToLibrary(title, author, pages, readValue);
+    renderBook(book);
+    form.reset();
 })
