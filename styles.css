@@ -1,0 +1,159 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+/* Main Code section */
+
+:root {
+    --primary-font-color: #F6F0D7;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 6fr;
+}
+
+#header {
+    grid-row: 1 / 2;
+
+    display: flex;
+    height: 8vh;
+    background-color: #9CAB84;
+    align-items: center;
+    padding-left: 8px;
+}
+
+#header h1 {
+    color: var(--primary-font-color);
+}
+
+#addSection {
+    grid-row: 2 / 3;
+
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+}
+
+#addButton {
+    background-color: #89986D;
+    border-radius: 15px;
+    border: 0px;
+    padding: 0.5em;
+    color: var(--primary-font-color);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#content {
+    grid-row: 3 / 4;
+    gap: 10px;
+
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.card {
+    border-radius: 15px ;
+    background-color: #C5D89D;
+}
+
+.cardContent {
+    padding: 8px;
+    color: var(--primary-font-color);
+    font-weight: 800;
+}
+
+.card p {
+    display: flex;
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    margin-top: 4px;
+    padding-top: 4px;
+
+    border-top: 2px solid var(--primary-font-color);
+    }
+
+.buttonContainer button {
+    width: 50%;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.deleteButton {
+    background-color: red;
+}
+
+.readButton {
+    background-color: #89986D;
+}
+
+.title {
+    justify-content: center;
+    border-bottom: 2px solid var(--primary-font-color);
+}
