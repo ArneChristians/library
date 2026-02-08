@@ -26,8 +26,8 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 //Dummy Content
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', 'not read yet');
-addBookToLibrary('Gedage', 'bagnado', '295', 'not read yet');
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', 'Not read yet');
+addBookToLibrary('Gedage', 'bagnado', '295', 'Not read yet');
 
 const content = document.querySelector('#content');
 
@@ -57,6 +57,7 @@ function renderBook(book) {
 
     const read = document.createElement("p");
     read.classList.add("textContent");
+    read.classList.add("readText");
     read.textContent = `Read: ${book.read}`;
     read.dataset.id = book.id;
 
@@ -109,6 +110,23 @@ content.addEventListener("click", (e) => {
     }
 })
 
+//Read Button
+const readButton = document.querySelector(".readButton");
+content.addEventListener("click", (e) => {
+    if(!e.target.classList.contains("readButton")) return;
+
+    const card = e.target.closest(".card")
+    const readText = card.querySelector(".readText");
+    
+
+    if(readText.textContent === "Read: Already read"){
+        readText.textContent = "Read: Not read yet";
+    } else {
+        readText.textContent = "Read: Already read"
+    }
+    
+})
+
 
 // Add Button
 const addButton = document.querySelector("#addButton");
@@ -132,7 +150,7 @@ form.addEventListener("submit", (e) => {
     const title = data.get("title");
     const author = data.get("author");
     const pages = data.get("pages")
-    const readValue = data.get("read") === "on" ? "Read" : "Not read yet";
+    const readValue = data.get("read") === "on" ? "Already read" : "Not read yet";
 
     const book = addBookToLibrary(title, author, pages, readValue);
     renderBook(book);
