@@ -169,3 +169,42 @@ h1, h2, h3, h4, h5, h6 {
 .textContent {
     text-shadow: 1px 1px gray;
 }
+
+[data-add-dialog] {
+    justify-self: center;
+    align-self: center;
+
+    border-radius: 15px;
+    border: none;
+    box-shadow: 5px 5px gray;
+    background-color: #89986D;
+}
+
+[data-add-dialog] {
+    color: var(--primary-font-color);
+    text-shadow: 2px 2px gray;
+}
+
+[data-dialog-form] {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+[data-submit-button] {
+    background-color: #9CAB84;
+    border-radius: 15px;
+    border: 0px;
+    padding: 0.5em;
+    color: var(--primary-font-color);
+    font-weight: 600;
+    cursor: pointer;
+    height: 50%;
+    box-shadow: 2px 2px gray;
+}
