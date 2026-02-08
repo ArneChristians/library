@@ -82,3 +82,9 @@ myLibrary.forEach(book => {
 });
 
 // Add Button
+const addButton = document.querySelector("#addButton");
+const addDialog = document.querySelector("[data-add-dialog]")
+
+addButton.addEventListener("click", () => {
+    addDialog.showModal()
+})
